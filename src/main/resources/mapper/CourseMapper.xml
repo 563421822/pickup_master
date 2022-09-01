@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.wangyl.pickup_master.mapper.CourseMapper">
+    <resultMap id="BaseResultMap" type="org.wangyl.pickup_master.entity.Course">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="course" jdbcType="INTEGER" property="course"/>
+        <result column="poster" jdbcType="VARCHAR" property="poster"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="original_price" jdbcType="DECIMAL" property="originalPrice"/>
+        <result column="catalogue" jdbcType="VARCHAR" property="catalogue"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="eng_name" jdbcType="VARCHAR" property="engName"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, course, poster, price, original_price, catalogue, `type`, version, create_time,
+    update_time, `status`
+    </sql>
+    <select id="getOverAll" resultMap="BaseResultMap">SELECT con.id,con.title,con.eng_name,con.poster,coa.name,con.status FROM tb_coach_course co INNER JOIN tb_coach coa ON co.coach_id=coa.id INNER JOIN tb_course_name con ON co.course_id=con.id WHERE con.status=0 ORDER BY con.id ASC</select>
+    <select id="getDetail" resultMap="BaseResultMap">SELECT co.id,co.course,ISNULL(co.poster,con.poster) AS poster,co.price,co.original_price,co.catalogue,(
+        SELECT type_name FROM tb_course_type WHERE id=co.type) AS type,co.version,co.create_time,co.update_time,coa.name,coa.eng_name,coa.avatar,con.title,con.description,co.status FROM tb_coach_course cc INNER JOIN tb_coach coa ON cc.coach_id=coa.id INNER JOIN tb_course_name con ON cc.course_id=con.id INNER JOIN tb_course co ON con.id=co.course WHERE course_id=#{id} AND co.status=0</select>
+</mapper>
