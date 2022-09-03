@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 @Setter
 @AllArgsConstructor
-public class User implements Serializable {
+public class User{
     private Integer id;
 
     private String username;
@@ -33,7 +33,4 @@ public class User implements Serializable {
     private Date updateTime;
 
     private Boolean status;
-
-    @Serial
-    private static final long serialVersionUID = 1L;
 }
