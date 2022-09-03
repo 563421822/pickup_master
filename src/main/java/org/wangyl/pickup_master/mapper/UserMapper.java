@@ -7,4 +7,5 @@ import java.util.Map;
 
 public interface UserMapper {
     User selectByEmail(String email);
+    void updateByPrimaryKeySelective(User user);
 }
