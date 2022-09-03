@@ -3,13 +3,14 @@ package org.wangyl.pickup_master.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Setter
 @Getter
-public class Course implements Serializable {
+public class Course{
     private Integer id;
 
     private Integer course;
@@ -41,6 +42,4 @@ public class Course implements Serializable {
     transient private String avatar;
 
     transient private String description;
-
-    private static final long serialVersionUID = 1L;
 }
