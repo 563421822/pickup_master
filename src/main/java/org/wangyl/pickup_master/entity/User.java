@@ -1,14 +1,10 @@
 package org.wangyl.pickup_master.entity;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Date;
 
 @Getter
 @Setter

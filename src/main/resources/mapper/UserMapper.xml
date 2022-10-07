@@ -14,8 +14,8 @@
     <result column="status" jdbcType="BOOLEAN" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, gender, email, `password`, avatar, birthday, create_time, update_time,
-    `status`
+    id, username, gender, email, password, avatar, birthday, create_time, update_time,
+    status
   </sql>
   <update id="updateByPrimaryKeySelective" parameterType="org.wangyl.pickup_master.entity.User">
     UPDATE tb_user
@@ -30,7 +30,7 @@
         email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        `password` = #{password,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="avatar != null">
         avatar = #{avatar,jdbcType=VARCHAR},
@@ -45,12 +45,12 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=BOOLEAN},
+        status = #{status,jdbcType=BOOLEAN},
       </if>
     </set>
     WHERE id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByEmail" resultType="org.wangyl.pickup_master.entity.User">
-    SELECT * FROM tb_user WHERE email = #{email} AND `status` = 0
+    SELECT * FROM tb_user WHERE email = #{email} AND status = 0
   </select>
 </mapper>
